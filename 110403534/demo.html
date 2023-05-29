@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Game</title>
+		<link rel="stylesheet" href="mystyle.css">
+	</head>
+	<body>
+		<h2>Welcome to the Lottery Game<h2>
+		<div id="style1"></div>
+		<div>
+			<p>Please enter 3 different lucky numbers (1~10) to start the game</p>
+			<lable>your 1st number</lable>
+			<input id="first" type="text" placeholder="enter a number" value=""/>  <!--第一題 輸入號碼-->
+			<br>
+			<lable>your 2nd number</lable>
+			<input id="second" type="text" placeholder="enter a number" value=""/>
+			<br>
+			<lable>your 3rd number</lable>
+			<input id="third" type="text" placeholder="enter a number" value=""/>
+			<br><br>
+			<input id="btn" type="button" value="GO! See the result!"/>
+			<hr>
+			<hr>
+			<hr>
+			<h2>result:<p id="result"></ul><p/></h2>
+		</div>
+		
+		<script>
+			
+			document.getElementById('btn').onclick = function() {
+			
+				const N1 = parseInt(document.getElementById('first').value);
+				const N2 = parseInt(document.getElementById('second').value);
+				const N3 = parseInt(document.getElementById('third').value);
+				let text = "";
+				let msg = "";
+				let prize = "";
+				
+				
+				if(N1 == N2 || N1 == N3 || N2 == N3) {  //第五題 檢查功能
+					text = "Your have invalid or repeated lucky numbers!";
+					alert('text');
+				}else if(N1 > 10 || N2 >10 || N3 > 10) {
+					text = "Your have invalid or repeated lucky numbers!";
+					alert('text');
+				}
+				
+				function getRandomNum(x) {     //取x個亂數
+				return Math.floor(Math.random() * x) + 1;
+				}
+				
+				function getPowerNum() {     //第五題 檢查樂透開獎號碼是否重複
+					var L1 = getRandomNum(10);
+					var L2 = getRandomNum(10);
+					var L3 = getRandomNum(10);
+					for(let j = 0; j >=0; J++) {
+						if(L1 == L2) {
+							L2 = getRandomNum(10);
+						
+						}else if(L1 == L3 || L2 == L3){
+							L3 = getRandomNum(10);
+						
+						}
+					}
+				}
+				
+				if(N1 == L1 || N1 == L2 || N1 == L3) {
+					msg += "First lucky number is successful!" + "\n";
+				}else if(N2 == L1 || N2 == L2 || N2 == L3) {
+					msg += "Second lucky number is successful!" + "\n";
+				}else if(N3 == L1 || N3 == L2 || N3 == L3) {
+					msg += "Third lucky number is successful!" + "\n";
+				}
+			
+				let arrayN = [N1, N2, N3];
+				let arrayL = [L1, L2, L3];
+				const count = 0;
+				for(let n = 0; n <= 2; n++) {
+					for(let m = 0; m <= 2; m++) {
+						if(arrayN[n] == arrayL[m]){
+							count++;
+						}
+					}
+				}
+				if(count == 1) {
+					prize += "1個號碼對中，獲得參獎!   獎金為500元。";  <!--第一題中獎資訊 & 第二題-->
+				}else if(count == 2) {
+					prize += "2個號碼對中，獲得貳獎!   獎金為1000元。";
+				}else if(count == 3) {
+					prize += "2個號碼對中，獲得頭獎!   獎金為2000元。";
+				}else if(count == 0) {
+					prize += "1個號碼都沒中唉?!"
+				}
+				
+				document.getElementById("result").innerHTML = "Lottery nembers are" + L1 + " " + L2 + " " + L3 + " !!!" + "\n" + 
+				msg + "\n" + prize;
+				
+				
+			}
+		</script>
+	</body>
+</html>

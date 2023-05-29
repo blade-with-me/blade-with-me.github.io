@@ -1,0 +1,20 @@
+/*(3)特效*/
+body {  
+		background-color: pink;
+}
+/*(3)特效*/
+#style1 {
+	width: 20px;
+	height: 20px;
+	background: #4A4AFF;
+	transition: width 3s, height 3s, transform 3s, background 2s ease-in;
+}
+#style1:hover {  /*(3)特效 觸發*/
+	width:60px;
+	height: 60px;
+	background: #B15BFF;  /*(3)特效 變顏色*/
+	transform: rotate(180deg);  /*(3)特效 旋轉*/
+}
+hr {  /*(3)特效*/
+	width: 80%;
+}
